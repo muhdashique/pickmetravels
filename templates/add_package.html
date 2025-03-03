@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Management</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #2980b9;
+        }
+
+        /* Form Styling */
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        form p {
+            margin: 15px 0;
+        }
+
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        form input[type="text"],
+        form textarea,
+        form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        form button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .actions a {
+            margin-right: 10px;
+            color: #3498db;
+            transition: color 0.3s ease;
+        }
+
+        .actions a:hover {
+            color: #2980b9;
+        }
+
+        .actions a:last-child {
+            color: #e74c3c;
+        }
+
+        .actions a:last-child:hover {
+            color: #c0392b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            th {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+            }
+
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                text-align: left;
+                font-weight: bold;
+                color: #2c3e50;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Add Package</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'index' %}">Back to Home</a>
+
+    <hr>
+    <h2>Existing Packages</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Rate</th>
+                <th>Available</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for package in packages %}
+            <tr>
+                <td data-label="Name">{{ package.name }}</td>
+                <td data-label="Description">{{ package.description }}</td>
+                <td data-label="Rate">₹{{ package.rate }}</td>
+                <td data-label="Available">{% if package.available %} ✅ {% else %} ❌ {% endif %}</td>
+                <td data-label="Image">
+                    {% if package.image %}
+                        <img src="{{ package.image.url }}" alt="{{ package.name }}">
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+                <td data-label="Actions" class="actions">
+                    <a href="{% url 'edit_package' package.id %}">✏️ Edit</a>
+                    <a href="{% url 'delete_package' package.id %}" onclick="return confirmDelete()">🗑️ Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        // JavaScript for confirmation before deletion
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this package?');
+        }
+    </script>
+</body>
+</html>
