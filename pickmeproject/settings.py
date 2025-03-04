@@ -131,3 +131,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Ensure this is included
 DEBUG = True  # For development only
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Change this if using another email provider
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ashthecoder2000@gmail.com'  # Your email
+EMAIL_HOST_PASSWORD = 'ntxitkagrsnbhvts'  # Your email password or app password

@@ -1133,7 +1133,7 @@
 
         .map-section {
             width: 50%;
-            min-height: 400px;
+            min-height: 500px;
             background-image: url('https://source.unsplash.com/random/600x400/?map');
             background-size: cover;
             background-position: center;
@@ -1237,7 +1237,8 @@
             }
 
             .map-section {
-                min-height: 300px;
+                min-height: 100%;
+                max-height: 400px;
             }
 
             .contact-info {
@@ -1591,6 +1592,32 @@
         color: #e8b0a8;
         font-size: 36px;
     }
+
+    /* cab book whatsapp button */
+    .whatsapp-button {
+    background-color: #25D366; /* WhatsApp Green */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.3s ease;
+}
+
+.whatsapp-button i {
+    font-size: 18px;
+}
+
+.whatsapp-button:hover {
+    background-color: #1EBE57;
+}
+
     </style>
 </head>
 
@@ -1729,56 +1756,66 @@
     </section>
 
    
-<section style="margin-top: 100px;" id="cabs">
-    <h2 class="section-title">Pick Your Ride</h2>
-    {% if vehicles %}
-    <div class="vehicles-container">
-        {% for vehicle in vehicles %}
-        <div class="vehicle-card" data-id="{{ vehicle.id }}">
-            <!-- For each vehicle card -->
-            <div class="vehicle-image-container">
-                {% if vehicle.images.all %}
-                {% for image in vehicle.images.all %}
-                {% if forloop.first %}
-                <img src="{{ image.image.url }}" alt="{{ vehicle.name }}" class="vehicle-image showing" data-index="0">
-                {% else %}
-                <img src="{{ image.image.url }}" alt="{{ vehicle.name }}" class="vehicle-image" style="display: none;"
-                    data-index="{{ forloop.counter0 }}">
-                {% endif %}
-                {% endfor %}
-    
-                {% if vehicle.images.all.count > 1 %}
-                <div class="image-nav">
+    <section style="margin-top: 100px;" id="cabs">
+        <h2 class="section-title">Pick Your Ride</h2>
+        {% if vehicles %}
+        <div class="vehicles-container">
+            {% for vehicle in vehicles %}
+            <div class="vehicle-card" data-id="{{ vehicle.id }}">
+                <!-- For each vehicle card -->
+                <div class="vehicle-image-container">
+                    {% if vehicle.images.all %}
                     {% for image in vehicle.images.all %}
-                    <div class="image-nav-dot {% if forloop.first %}active{% endif %}"
-                        data-index="{{ forloop.counter0 }}"></div>
+                    {% if forloop.first %}
+                    <img src="{{ image.image.url }}" alt="{{ vehicle.name }}" class="vehicle-image showing" data-index="0">
+                    {% else %}
+                    <img src="{{ image.image.url }}" alt="{{ vehicle.name }}" class="vehicle-image" style="display: none;"
+                        data-index="{{ forloop.counter0 }}">
+                    {% endif %}
                     {% endfor %}
+        
+                    {% if vehicle.images.all.count > 1 %}
+                    <div class="image-nav">
+                        {% for image in vehicle.images.all %}
+                        <div class="image-nav-dot {% if forloop.first %}active{% endif %}"
+                            data-index="{{ forloop.counter0 }}"></div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% else %}
+                    <img src="/static/images/noimage.png" alt="No image available" class="vehicle-image">
+                    {% endif %}
                 </div>
-                {% endif %}
-                {% else %}
-                <img src="/static/images/noimage.png" alt="No image available" class="vehicle-image">
-                {% endif %}
-            </div>
-    
-            <div class="vehicle-details">
-                <div class="vehicle-name" >{{ vehicle.name }}</div>
-                <div class="vehicle-price">₹{{ vehicle.per_day_rate }} per day</div>
-                <div class="vehicle-description">{{ vehicle.description|truncatechars:100 }}</div>
-                <div class="vehicle-meta">
-                    <span>Seats: {{ vehicle.seating_capacity }}</span>
-                    <span>Extra km: ₹{{ vehicle.additional_km_rate }}</span>
-                    <span>Allow Daily: {% if vehicle.allow_daily %} Yes {% else %} No {% endif %}</span>
+        
+                <div class="vehicle-details">
+                    <div class="vehicle-name">{{ vehicle.name }}</div>
+                    <div class="vehicle-price">₹{{ vehicle.per_day_rate }} per day</div>
+                    <div class="vehicle-description">{{ vehicle.description|truncatechars:100 }}</div>
+                    <div class="vehicle-meta">
+                        <span>Seats: {{ vehicle.seating_capacity }}</span>
+                        <span>Extra km: ₹{{ vehicle.additional_km_rate }}</span>
+                        <span>Allow Daily: {% if vehicle.allow_daily %} Yes {% else %} No {% endif %}</span>
+                    </div>
+                    
+                    <!-- WhatsApp Button -->
+                    
+                    <button class="whatsapp-button "style="margin-top: 10px;" onclick="sendWhatsAppMessage('{{ vehicle.name }}', '{{ vehicle.per_day_rate }}', '{{ vehicle.seating_capacity }}', '{{ vehicle.additional_km_rate }}', '{{ vehicle.allow_daily }}')">
+                        <i class="fab fa-whatsapp" ></i> Book Your Cab
+                    </button>
+                    
+                    
+                    
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-    {% else %}
-    <div class="no-vehicles">
-        <p>No vehicles available at the moment.</p>
-    </div>
-    {% endif %}
-</section>
+        {% else %}
+        <div class="no-vehicles">
+            <p>No vehicles available at the moment.</p>
+        </div>
+        {% endif %}
+    </section>
+    
     
 
     
@@ -1879,31 +1916,33 @@
         <div class="contact-form-container" style="margin-top: 50px;">
             <div class="form-section">
                 <h2>Contact Us</h2>
-                <form>
+                <form method="POST" action="{% url 'send_email' %}">
+                    {% csrf_token %}
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Full Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Name">
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" class="form-control" placeholder="Email">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="subject">Subject</label>
-                        <input type="text" id="subject" class="form-control" placeholder="Subject">
+                        <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" class="form-control" placeholder="Message"></textarea>
+                        <textarea id="message" name="message" class="form-control" placeholder="Message" required></textarea>
                     </div>
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </div>
+            
     
             <div class="map-section">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d7869.410079953582!2d76.8888166!3d9.5343348!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1740744719507!5m2!1sen!2sin" width="950" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d7869.410079953582!2d76.8888166!3d9.5343348!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1740744719507!5m2!1sen!2sin" width="950" height="550" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     
@@ -2120,6 +2159,19 @@
         }
 
         setInterval(autoScrollTestimonials, 3000); // Scroll every 3 seconds
+
+
+        // whats app button booking cab
+        function sendWhatsAppMessage(name, rate, seats, extra_km, allow_daily) {
+                            let message = `${name}%0A
+                            Rate: ₹${rate} per day%0A
+                            Seats: ${seats}%0A
+                            Extra km: ₹${extra_km}%0A
+                            Allow Daily: ${allow_daily === "True" ? "Yes" : "No"}`;
+                    
+                            let url = `https://wa.me/918129139506?text=${message}`;
+                            window.open(url, "_blank");
+                        }
     </script>
 </body>
 

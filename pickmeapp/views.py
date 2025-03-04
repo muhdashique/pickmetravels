@@ -31,7 +31,7 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     messages.success(request, 'You have been logged out.')
-    return redirect('login')
+    return redirect('/')
 
 
 from django.shortcuts import render, get_object_or_404, redirect
@@ -198,3 +198,37 @@ def delete_testimonial(request, testimonial_id):
     testimonial = get_object_or_404(Testimonial, id=testimonial_id)
     testimonial.delete()
     return redirect('add_testimonial')
+
+
+
+
+
+
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
+def send_email(request):
+    if request.method == "POST":
+        name = request.POST["name"]
+        email = request.POST["email"]
+        subject = request.POST["subject"]
+        message = request.POST["message"]
+
+        full_message = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+
+        try:
+            send_mail(
+                subject,
+                full_message,
+                email,  # Sender's email (user's email)
+                ["ashthecoder2000@gmail.com"],  # Replace with your email to receive messages
+                fail_silently=False,
+            )
+            messages.success(request, "Your message has been sent successfully!")
+        except Exception as e:
+            messages.error(request, f"Error sending email: {e}")
+
+        return redirect("/")  # Redirect back to the contact page
+
+    return render(request, "index.html")

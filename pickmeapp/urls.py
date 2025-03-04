@@ -18,4 +18,6 @@ urlpatterns = [
      path('add-testimonial/', views.add_testimonial, name='add_testimonial'),
       path('edit-testimonial/<int:testimonial_id>/', views.edit_testimonial, name='edit_testimonial'),
     path('delete-testimonial/<int:testimonial_id>/', views.delete_testimonial, name='delete_testimonial'),
+    path("send-email/", views.send_email, name="send_email"),
+    path('logout/', views.user_logout, name='user_logout'),
 ]
