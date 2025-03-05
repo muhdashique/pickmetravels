@@ -7,12 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PICK ME TRAVELS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @font-face {
+            font-family: 'Mortend';
+            src: url('../static/fonts/Mortend\ Bold.ttf');
+        }
+        @font-face {
+            font-family: 'Racing';
+            src: url('../static/fonts/RacingSportDisplay-Regular.otf');
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body{
+            background: #000000;
+        }
+        .HomeBannerText{
+            font-family:'Mortend';
+        }
+        .HomeBannerText2{
+            font-family:'Racing';
         }
 
         /* Top contact bar */
@@ -45,7 +63,7 @@
         }
 
         /* Navigation */
-        nav {
+        /* nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -53,7 +71,9 @@
             background-color: black;
             position: relative;
             z-index: 100;
-        }
+            background-color: #000000;
+            backdrop-filter: blur(8px);
+        } */
 
         .logo {
             display: flex;
@@ -288,8 +308,8 @@
         }
 
         body {
-            background-color: #000000;
-            color: #333;
+            /* background-color: #000000; */
+            color: #000000;
             /* padding: 20px; */
         }
 
@@ -1270,6 +1290,7 @@
         body {
            
             line-height: 1.6;
+            border: #000000;
         }
 
         .footer {
@@ -1616,14 +1637,27 @@
 
 .whatsapp-button:hover {
     background-color: #1EBE57;
+    background-color: #ffffff1d;
 }
+.banergBg{
+    background: linear-gradient(90deg, rgba(242,242,237,1) 0%, rgba(28,28,28,1) 100%);
+}
+nav {
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.navbar-scroll {
+    background-color: rgba(0, 0, 0, 0.8); /* Adjust the color as needed */
+}
+
 
     </style>
 </head>
 
 <body>
     <!-- Contact Bar -->
-    <div class="contact-bar">
+    <!-- <div class="contact-bar">
         <div class="contact-info">
             <div class="contact-item">
                
@@ -1639,10 +1673,10 @@
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
         </div>
-    </div>
+    </div> -->
 
     <!-- Navigation -->
-    <nav>
+    <!-- <nav>
         <div class="logo">
             <a href="{% url 'index' %}">
                 <img src="{% static 'D:\IMC project\pickmetravels\pickmeproject\static\images\pickmelogo.jpg' %}" alt="Pickme Taxi Logo" style="height: auto;width: 120px;">
@@ -1659,13 +1693,214 @@
         <div>
             <a href="{% url 'login' %}" class="login-btn">Login</a>
         </div>
-    </nav>
+    </nav> -->
 
     <!-- Hero Section -->
+<div class="overflow-hidden">
+    <!-- Mobile Navbar -->
+    <header id="headerMenu" class="fixed z-[9999] bg-[#fff] w-[70%] h-screen hidden">
+        <div class="absolute right-2 top-2 cursor-pointer" id="closeMenu">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <nav class="flex flex-col justify-center items-center h-screen">
+            <div class="w-[100px] mb-10">
+                <img src="{% static 'images/logo.png' %}" alt="" class="w-full">
+            </div>
+            <div>
+                <ul class="flex flex-col justify-center items-center gap-5 text-[#000]">
+                    <a href="#about" class="active"><li>Home</li></a>
+                    <a href="#cabs"><li>Our Cabs</li></a>
+                    <a href="#thariff"><li>Tariff Plan</li></a>
+                    <a href="#contact"><li>Connect Us</li></a>
+                    <a href="{% url 'login' %}"><li>Login</li></a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <nav class="w-full flex navbar-scroll justify-between items-center px-2 md:px-10 pt-3 lg:hidden fixed left-0 right-0 z-[9998] ">
+        <a href="{% url 'index' %}">
+            <div class="md:w-[150px] md:h-[100px] w-[100px]">
+                <img src="{% static 'images/logo.png' %}" alt="" class="w-full h-full object-contain">
+            </div>
+        </a>
+        <div id="menuToggle" class="text-xl cursor-pointer">
+            <i class="fa-solid fa-bars text-[#fff]"></i>
+        </div>
+    </nav>
+    <nav class="lg:flex justify-between navbar-scroll items-center fixed left-0 right-0 z-[9999] px-2 w-full hidden">
+        <div class="lg:flex flex-col gap-1 hidden">
+            <div class="flex items-center gap-1 text-[#fff]"><i class="fas fa-mobile-alt text-[#F59E00]"></i>+91 8078589484</div>
+            <div class="flex items-center gap-1 text-[#fff]">
+                <i class="fas fa-envelope text-[#F59E00]"></i> Pickmecabscalicut@gmail.com
+            </div>
+        </div>
+        <div>
+            <ul class="lg:flex hidden justify-center items-center gap-10 text-[#fff] ">
+                <a href="#about" class="active"><li>Home</li></a>
+                <a href="#cabs"><li>Our Cabs</li></a>
+                <a href="{% url 'index' %}"><li>
+                    <div class="w-[150px] h-[100px]">
+                        <img src="{% static 'images/logo.png' %}" alt="" class="w-full h-full object-contain">
+                    </div>
+                </li></a>
+                <a href="#thariff"><li>Tariff Plan</li></a>
+                <a href="#contact"><li>Connect Us</li></a>
+            </ul>
+        </div>
+        <div class=" right-5 hidden lg:flex items-center gap-2">
+            <!-- <a href="tel:+918129139506"><button class="text-[#fff] border border-[#fff] px-10 py-2 rounded-full backdrop-blur-sm bg-[#F59E00]">Book a Taxi</button></a> -->
+            <a href="{% url 'login' %}"><button class="text-[#fff] border border-[#fff] px-10 py-2 rounded-full backdrop-blur-sm">Login</button></a>
+        </div>
+        
+    </nav>
 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+        
+        body, html {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* background-color: #FFD700; */
+        }
+        
+        .banner-container {
+            display: flex;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .left-panel {
+            background-color: rgba(0,0,0,0.9);
+            width: 40%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: white;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            color: #FFD700;
+        }
+        
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #FFD700;
+            line-height: 1.2;
+        }
+        
+        .description {
+            margin-top: 1rem;
+            color: #999;
+        }
+        
+        .pre-order {
+            background-color: #FFD700;
+            color: black;
+            padding: 0.75rem 2rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            align-self: flex-start;
+            margin-top: 1rem;
+        }
+        
+        .car-image {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%) rotate(-10deg);
+            max-width: 60%;
+            z-index: 10;
+        }
+        
+        .thumbnail-strip {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background-color: rgba(0,0,0,0.8);
+            padding: 1rem;
+        }
+        
+        .thumbnail {
+            width: 100px;
+            margin-right: 1rem;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
+        }
+        
+        .porsche-logo {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="h-screen w-full mb-20">
+        <div class="lg:flex lg:flex-row-reverse justify-center items-center h-screen lg:w-full relative h-full">
+            <div class="  md:w-[1500px] lg:rotate-90deg lg:top-[-900px] bg-[#FFD700] lg:h-[1500px] rounded-full absolute right-[-400px] top-[-150px] lg:right-[-500px] w-[700px] h-[700px] rotate-[120deg]">
+                
+            </div>
+            <div class="w-full h-full flex justify-center items-center">
+                <div class="lg:w-[80%] md:h-[40%] h-full z-[999] flex justify-center items-center">
+                    <img src="{% static 'images/car1.png' %}" alt="Yellow Porsche" class=" w-full h-full object-contain">
+                </div>
+            </div>
+            <div class="lg:w-[40%] lg:pl-14 px-2 w-full mt-2 mb-10 absolute bottom-[-50px] md:bottom-0 md:relative">
+                <div>
+                    <h1 class="text-[#fff] lg:text-[40px] mb-2 font-black leading-tight text-xl">THE <span class="block text-[#FFD700]">YELLOW BEAST</span></h1>
+                    <p class="text-[#fff] text-sm md:text-base">
+                        In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
+                    </p>
+                    <button class="pre-order">Book Your Cab</button>
+                </div>
+                
+            </div>
+            
+            <div class="overflow-x-auto hidden md:flex md:flex-col">
+                <div class="flex gap-2 md:gap-5 items-center overflow-x-auto absolute bottom-2 left-2 md:left-10 lg:left-14">
+                    <div class="w-[200px] h-[200px] bg-[#fff] rounded-xl overflow-hidden">
+                        <img src="http://images.overdrive.in/wp-content/uploads/2024/05/Untitled-design-2024-05-10T105517.989-900x506.png"
+                            alt="" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-[200px] h-[200px] bg-[#fff] rounded-xl overflow-hidden">
+                        <img src="https://5.imimg.com/data5/HX/OP/GLADMIN-13487668/maruti-ertiga-cat-500x500.png" alt=""
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-[200px] h-[200px] bg-[#fff] rounded-xl overflow-hidden">
+                        <img src="https://imgd-ct.aeplcdn.com/664x415/n/s14t6ra_1421876.jpg?q=80" alt=""
+                            class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
 
+    
 
-    <div class="hero">
+    <!-- <div class="hero">
         <div class="slider-container">
             <div class="slide active">
                 <img src="https://images.pexels.com/photos/248747/pexels-photo-248747.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -1715,13 +1950,13 @@
             <div class="dot" data-slide="2"></div>
             <div class="dot" data-slide="3"></div>
         </div>
-    </div>
-
+    </div> -->
+    
 
     <!-- Contact Buttons -->
     <div class="contact-buttons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://wa.me/918129139506" target="Hello I Wand To Book a Cab">
+        <a href="https://www.instagram.com/pickmetravels?igsh=Znh4cTZnZXJiMmIw"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/+91 8078589484" target="Hello I Wand To Book a Cab">
     <i class="fab fa-whatsapp"></i>
 </a>
 
@@ -1730,11 +1965,20 @@
 
     <!-- Mobile Contact Buttons -->
     <div class="mobile-contact">
-        <a href="#"><i class="fas fa-phone"></i></a>
-        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+918129139506"><i class="fas fa-phone"></i></a>
+        <a href="https://wa.me/+91 8078589484"><i class="fab fa-whatsapp"></i></a>
     </div>
 
-    <section id="about">
+    <!-- <section class="w-full relative mt-10">
+        <div class="md:flex justify-center items-center">
+            <div class="HomeBannerText text-[#fff] text-[80px] left-2 md:w-[50%] mt-[-100px] text-center">PICK ME</div>
+            <div class="flex justify-center w-full md:w-[50%]">
+                <img src="{% static 'F:\pickmetravels\pickmeproject\static\images\Carorg.png' %}" alt="">
+            </div>
+        </div>
+    </section> -->
+
+    <section id="about" class="">
         <div class="about-container">
             <div class="about-left">
                 <img src="https://images.pexels.com/photos/20001475/pexels-photo-20001475/free-photo-of-photo-of-a-2006-ford-gt.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
@@ -1783,7 +2027,7 @@
                     </div>
                     {% endif %}
                     {% else %}
-                    <img src="/static/images/noimage.png" alt="No image available" class="vehicle-image">
+                    <img src="images/noimage.png" alt="No image available" class="vehicle-image">
                     {% endif %}
                 </div>
         
@@ -1998,8 +2242,8 @@
             <a href="#">Tharrif</a>
         </nav>
         
-        <div class="footer-logo">
-            <img src="{% static 'D:\IMC project\pickmetravels\pickmeproject\static\images\pickmelogo.jpg' %}" alt="Pickme Taxi Logo">
+        <div class="w-[150px]">
+            <img src="{% static 'images/logo.png' %}" alt="Pickme Taxi Logo" class="w-full h-full object-contain">
         </div>
         
        
@@ -2033,6 +2277,32 @@
         <p class="copyright">Copyright © 2022 | Pickmetravels. All rights reserved.</p>
     </div>
 </footer>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let navbar = document.querySelector("nav");
+
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 50) { // Change '50' to adjust when the color appears
+                navbar.classList.add("navbar-scroll");
+            } else {
+                navbar.classList.remove("navbar-scroll");
+            }
+        });
+    });
+</script>
+
+
+<script>
+    document.getElementById("menuToggle").addEventListener("click", function () {
+        document.getElementById("headerMenu").classList.toggle("hidden");
+    });
+
+    document.getElementById("closeMenu").addEventListener("click", function () {
+        document.getElementById("headerMenu").classList.add("hidden");
+    });
+</script>
 
     <script>
         // Image gallery functionality
