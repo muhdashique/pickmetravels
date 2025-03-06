@@ -26,6 +26,9 @@ DEBUG = True
 
 # Allow all hosts (For development only, change in production)
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = [
+    'https://pickmetravels.com',
+]
 
 # Application definition
 INSTALLED_APPS = [
