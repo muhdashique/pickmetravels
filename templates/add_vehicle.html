@@ -21,7 +21,7 @@
             text-align: center;
         }
     
-        form {
+        .firstform {
             background: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -185,7 +185,7 @@
     </div>
     {% endif %}
     
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" class="firstform">
         {% csrf_token %}
         
         <div class="form-section">

@@ -222,7 +222,7 @@ def send_email(request):
                 subject,
                 full_message,
                 email,  # Sender's email (user's email)
-                ["ashthecoder2000@gmail.com"],  # Replace with your email to receive messages
+                ["Picmetravels@gmail.com"],  # Replace with your email to receive messages
                 fail_silently=False,
             )
             messages.success(request, "Your message has been sent successfully!")

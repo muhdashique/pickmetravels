@@ -86,6 +86,7 @@ DATABASES = {
         'NAME': 'pickmetravels',  # Replace with your database name
         'USER': 'postgres',  # Replace with your database username
         'PASSWORD': 'info@imc',  # Replace with your database password
+        #   'PASSWORD': '1234',  # Replace with your database password
         'HOST': 'localhost',  # Use 'localhost' for local development
         'PORT': '5432',  # Default PostgreSQL port
     }
@@ -140,5 +141,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Change this if using another email provider
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'ashthecoder2000@gmail.com'  # Your email
+EMAIL_HOST_USER = 'Picmetravels@gmail.com'  # Your email
 EMAIL_HOST_PASSWORD = 'ntxitkagrsnbhvts'  # Your email password or app password
