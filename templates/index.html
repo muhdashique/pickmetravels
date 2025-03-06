@@ -1698,25 +1698,27 @@ nav {
     <!-- Hero Section -->
 <div class="overflow-hidden">
     <!-- Mobile Navbar -->
-    <header id="headerMenu" class="fixed z-[9999] bg-[#fff] w-[70%] h-screen hidden">
-        <div class="absolute right-2 top-2 cursor-pointer" id="closeMenu">
-            <i class="fa-solid fa-xmark"></i>
-        </div>
-        <nav class="flex flex-col justify-center items-center h-screen">
-            <div class="w-[100px] mb-10">
-                <img src="{% static 'images/logo.png' %}" alt="" class="w-full">
+    <section id="home">
+        <header id="headerMenu" class="fixed z-[9999] bg-[#fff] w-[70%] h-screen hidden">
+            <div class="absolute right-2 top-2 cursor-pointer" id="closeMenu">
+                <i class="fa-solid fa-xmark"></i>
             </div>
-            <div>
-                <ul class="flex flex-col justify-center items-center gap-5 text-[#000]">
-                    <a href="#about" class="active"><li>Home</li></a>
-                    <a href="#cabs"><li>Our Cabs</li></a>
-                    <a href="#thariff"><li>Tariff Plan</li></a>
-                    <a href="#contact"><li>Connect Us</li></a>
-                    <a href="{% url 'login' %}"><li>Login</li></a>
-                </ul>
-            </div>
-        </nav>
-    </header>
+            <nav class="flex flex-col justify-center items-center h-screen">
+                <div class="w-[100px] mb-10">
+                    <img src="{% static 'images/logo.png' %}" alt="" class="w-full">
+                </div>
+                <div>
+                    <ul class="flex flex-col justify-center items-center gap-5 text-[#000]">
+                        <a href="#about" class="active"><li>Home</li></a>
+                        <a href="#cabs"><li>Our Cabs</li></a>
+                        <a href="#thariff"><li>Tariff Plan</li></a>
+                        <a href="#contact"><li>Connect Us</li></a>
+                        <a href="{% url 'login' %}"><li>Login</li></a>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </section>
     <nav class="w-full flex navbar-scroll justify-between items-center px-2 md:px-10 pt-3 lg:hidden fixed left-0 right-0 z-[9998] ">
         <a href="{% url 'index' %}">
             <div class="md:w-[150px] md:h-[100px] w-[100px]">
@@ -1749,7 +1751,7 @@ nav {
         </div>
         <div class=" right-5 hidden lg:flex items-center gap-2">
             <!-- <a href="tel:+918129139506"><button class="text-[#fff] border border-[#fff] px-10 py-2 rounded-full backdrop-blur-sm bg-[#F59E00]">Book a Taxi</button></a> -->
-            <a href="{% url 'login' %}"><button class="text-[#fff] border border-[#fff] px-10 py-2 rounded-full backdrop-blur-sm">Login</button></a>
+            <a href="{% url 'login' %}"><button class="text-[#fff] border border-[#fff] px-10 py-2 rounded-full backdrop-blur-sm bg-[#FFD700]text-[#000]">Login</button></a>
         </div>
         
     </nav>
@@ -1870,24 +1872,27 @@ nav {
                 <div>
                     <h1 class="text-[#fff] lg:text-[40px] mb-2 font-black leading-tight text-xl">THE <span class="block text-[#FFD700]">YELLOW BEAST</span></h1>
                     <p class="text-[#fff] text-sm md:text-base">
-                        In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
+                       We offers convenient transportation for city rides, airport transfers, and outstation trips. Passengers can book via phone, app, or website, with options like GPS tracking, online payments, and professional drivers for a safe and comfortable journey.
                     </p>
-                    <button class="pre-order">Book Your Cab</button>
+                    <a href="tel:+918078589484">
+                        <button class="pre-order">Book Your Cab</button>
+                    </a>
+                    
                 </div>
                 
             </div>
             
             <div class="overflow-x-auto hidden md:flex md:flex-col">
                 <div class="flex gap-2 md:gap-5 items-center overflow-x-auto absolute bottom-2 left-2 md:left-10 lg:left-14">
-                    <div class="w-[200px] h-[200px] bg-[#fff] rounded-xl overflow-hidden">
+                    <div class="w-[250px] h-[200px] bg-[#fff] rounded-xl overflow-hidden">
                         <img src="http://images.overdrive.in/wp-content/uploads/2024/05/Untitled-design-2024-05-10T105517.989-900x506.png"
                             alt="" class="w-full h-full object-cover">
                     </div>
-                    <div class="w-[200px] h-[200px] bg-[#fff] rounded-xl overflow-hidden">
-                        <img src="https://5.imimg.com/data5/HX/OP/GLADMIN-13487668/maruti-ertiga-cat-500x500.png" alt=""
+                    <div class="w-[250px] h-[200px] bg-[#fff] rounded-xl overflow-hidden">
+                        <img src="https://5.imimg.com/data5/SELLER/Default/2022/9/MZ/RW/RG/10390332/innova-crysta-car-rental-service-500x500.jpg" alt=""
                             class="w-full h-full object-cover">
                     </div>
-                    <div class="w-[200px] h-[200px] bg-[#fff] rounded-xl overflow-hidden">
+                    <div class="w-[250px] h-[200px] bg-[#fff] rounded-xl overflow-hidden">
                         <img src="https://imgd-ct.aeplcdn.com/664x415/n/s14t6ra_1421876.jpg?q=80" alt=""
                             class="w-full h-full object-cover">
                     </div>
@@ -1960,12 +1965,12 @@ nav {
     <i class="fab fa-whatsapp"></i>
 </a>
 
-        <a href="tel:+918129139506"><i class="fas fa-phone"></i></a>
+        <a href="tel:+918078589484"><i class="fas fa-phone"></i></a>
     </div>
 
     <!-- Mobile Contact Buttons -->
     <div class="mobile-contact">
-        <a href="tel:+918129139506"><i class="fas fa-phone"></i></a>
+        <a href="tel:+918078589484"><i class="fas fa-phone"></i></a>
         <a href="https://wa.me/+91 8078589484"><i class="fab fa-whatsapp"></i></a>
     </div>
 
@@ -2183,10 +2188,10 @@ nav {
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </div>
-            
+           
     
             <div class="map-section">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d7869.410079953582!2d76.8888166!3d9.5343348!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1740744719507!5m2!1sen!2sin" width="950" height="550" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15658.130402910454!2d75.95594864561524!3d11.148146224383963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba64ee2471144f5%3A0x8692de4117c315d!2sKondotty%2C%20Kerala%20673638!5e0!3m2!1sen!2sin!4v1741241566596!5m2!1sen!2sin" width="950" height="550" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     
@@ -2196,8 +2201,8 @@ nav {
                     <i class="fa-solid fa-location-dot"></i>
                 </div>
                 <div class="contact-text">
-                    Address: 198 West 21th Street,<br>
-                    Suite 721 New York NY 10016
+                    Address: Kondotty,Calicut,Kerala<br>
+                   
                 </div>
             </div>
     
@@ -2206,7 +2211,7 @@ nav {
                     <i class="fa-solid fa-phone"></i>
                 </div>
                 <div class="contact-text">
-                    Phone: + 1235 2355 98
+                    Phone: +91 8078589484
                 </div>
             </div>
     
@@ -2215,7 +2220,7 @@ nav {
                     <i class="fa-solid fa-envelope"></i>
                 </div>
                 <div class="contact-text">
-                    Email: <a href="mailto:info@yoursite.com">info@yoursite.com</a>
+                    Email: <a href="mailto:Pickmecabscalicut@gmail.com">Pickmecabscalicut@gmail.com</a>
                 </div>
             </div>
     
@@ -2224,7 +2229,7 @@ nav {
                     <i class="fa-solid fa-globe"></i>
                 </div>
                 <div class="contact-text">
-                    Website: <a href="https://yoursite.com" target="_blank">yoursite.com</a>
+                    Website: <a href="https://pickmetravels.com" target="_blank">pickmetravels.com</a>
                 </div>
             </div>
         </div>
@@ -2236,15 +2241,17 @@ nav {
 <footer class="footer">
     <div class="footer-container">
         <nav class="footer-nav">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Vehicle</a>
-            <a href="#">Tharrif</a>
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#cabs">Our Cab</a>
+            <a href="#thariff">Tharrif</a>
         </nav>
         
-        <div class="w-[150px]">
+       <div class="w-full flex justify-center items-center mx-auto">
+        <div class="w-[150px] flex jusitfy-center items-center">
             <img src="{% static 'images/logo.png' %}" alt="Pickme Taxi Logo" class="w-full h-full object-contain">
         </div>
+       </div>
         
        
         
