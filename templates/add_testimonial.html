@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Testimonial</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        /* Form Styling */
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        form p {
+            margin: 15px 0;
+        }
+
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        form input[type="text"],
+        form textarea,
+        form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        form button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Testimonial List Styling */
+        .testimonial-list {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-content img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .testimonial-content strong {
+            font-size: 18px;
+            color: #2c3e50;
+        }
+
+        .testimonial-content p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .testimonial-actions a {
+            color: #3498db;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .testimonial-actions a:hover {
+            color: #2980b9;
+        }
+
+        .testimonial-actions a:last-child {
+            color: #e74c3c;
+        }
+
+        .testimonial-actions a:last-child:hover {
+            color: #c0392b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .testimonial {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .testimonial-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .testimonial-actions {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Add Testimonial</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="testimonial-list">
+        <h2>Testimonials</h2>
+        {% for testimonial in testimonials %}
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    {% if testimonial.image %}
+                        <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
+                    {% endif %}
+                    <div>
+                        <strong>{{ testimonial.name }}</strong>
+                        <p>{{ testimonial.review }}</p>
+                    </div>
+                </div>
+                <div class="testimonial-actions">
+                    <a href="{% url 'edit_testimonial' testimonial.id %}">Edit</a>
+                    <a href="{% url 'delete_testimonial' testimonial.id %}" onclick="return confirmDelete()">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        // JavaScript for confirmation before deletion
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this testimonial?');
+        }
+    </script>
+</body>
+</html>

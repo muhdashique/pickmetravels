@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Vehicle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .preview-images {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .preview-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .delete-btn {
+            display: block;
+            margin-top: 5px;
+            color: red;
+            text-decoration: none;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Edit Vehicle</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <h3>Current Images</h3>
+        <div class="preview-images">
+            {% for image in vehicle.images.all %}
+            <div>
+                <img src="{{ image.image.url }}" alt="Vehicle Image" class="preview-image">
+                <a href="{% url 'delete_vehicle_image' image.id %}" class="delete-btn">Delete</a>
+
+            </div>
+            {% empty %}
+                <p>No images uploaded for this vehicle.</p>
+            {% endfor %}
+        </div>
+
+        <h3>Upload New Images</h3>
+        <input type="file" name="new_images" multiple>
+
+        <button type="submit">Update Vehicle</button>
+    </form>
+
+    <br>
+    <a href="{% url 'add_vehicle' %}">Back to Add Vehicle</a>
+
+</body>
+</html>
