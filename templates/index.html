@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PICK ME TRAVELS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @font-face {
@@ -1557,8 +1559,8 @@
     }
 
     .testimonial-container {
-        width: 100%; /* Adjust width as needed */
-        max-width: 600px;
+        width: 90%; /* Adjust width as needed */
+        max-width: 650px;
         height: 250px; /* Fixed height */
         overflow: hidden;
         position: relative;
@@ -1570,8 +1572,13 @@
     .testimonial-wrapper {
         display: flex;
         transition: transform 1s ease-in-out;
-        width: 100%; /* Ensures all items fit in a row */
+        width: 650px; /* Ensures all items fit in a row */
         color: #45a049;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        max-width: 650px;
     }
 
     .testimonial-card {
@@ -1580,13 +1587,28 @@
         border-radius: 10px;
         padding: 20px;
         text-align: center;
-        width: 100%; /* Same as container width */
+        width: 650px; /* Same as container width */
         height: 100%;
         display: flex;
         flex-direction: column;
         flex: 0 0 auto; /* Prevents shrinking */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        margin: 0 10px;
+        margin: 0 auto;
+        
+    }
+
+    @media (max-width: 768px) {
+        .testimonial-container {
+            width: 100%; /* Take full width */
+            /* max-width: 100%; */
+            height: auto; /* Adjust height dynamically */
+        }
+
+        .testimonial-card {
+            min-width: 100%; /* Only show one card at a time */
+            margin: 0; /* Remove side margins */
+            padding: 15px;
+        }
     }
 
     .testimonial-card img {
@@ -1639,7 +1661,7 @@
 
 .whatsapp-button:hover {
     background-color: #1EBE57;
-    background-color: #ffffff1d;
+    background-color: #1EBE57;
 }
 .banergBg{
     background: linear-gradient(90deg, rgba(242,242,237,1) 0%, rgba(28,28,28,1) 100%);
@@ -1735,7 +1757,7 @@ nav {
         <div class="lg:flex flex-col gap-1 hidden">
             <div class="flex items-center gap-1 text-[#fff]"><i class="fas fa-mobile-alt text-[#F59E00]"></i>+91 8078589484</div>
             <div class="flex items-center gap-1 text-[#fff]">
-                <i class="fas fa-envelope text-[#F59E00]"></i>Picmetravels@gmail.com
+                <i class="fas fa-envelope text-[#F59E00]"></i>picmetravels@gmail.com
             </div>
         </div>
         <div>
@@ -1857,6 +1879,99 @@ nav {
             right: 1rem;
             width: 100px;
         }
+
+        /* ///service section/// */
+         /* Reset styles */
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Main container */
+        .services-section {
+            background-color: #000000;
+            padding: 40px 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Section title */
+        .services-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: #ffffff;
+        }
+
+        /* Service cards container */
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Individual service card */
+        .service-card {
+            background-color: white;
+            border-radius: 5px;
+            width: calc(33.33% - 20px);
+            min-width: 250px;
+            padding: 30px 20px;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Service card title */
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        /* Service description text */
+        .service-text {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* Service icon */
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .service-icon img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .service-card {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-card {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1872,34 +1987,15 @@ nav {
             </div>
             <div class="lg:w-[40%] lg:pl-14 px-2 w-full mt-2 mb-10 absolute bottom-[-50px] md:bottom-0 md:relative">
                 <div>
-                    <h1 class="text-[#fff] lg:text-[40px] mb-2 font-black leading-tight text-xl">THE <span class="block text-[#FFD700]">YELLOW BEAST</span></h1>
-                    <p class="text-[#fff] text-sm md:text-base">
+                    <h1 class="text-[#fff] lg:text-[40px] mb-2 font-black leading-tight text-3xl">Pick Me Travels <span class="block text-[#FFD700] text-2xl"> Where Every Ride Feels Like First Class</span></h1>
+                    <!-- <p class="text-[#fff] text-sm md:text-base">
                        We offers convenient transportation for city rides, airport transfers, and outstation trips. Passengers can book via phone, app, or website, with options like GPS tracking, online payments, and professional drivers for a safe and comfortable journey.
-                    </p>
+                    </p> -->
                     <a href="tel:+918078589484">
                         <button class="pre-order">Book Your Cab</button>
                     </a>
-                    
                 </div>
-                
             </div>
-            
-            <!-- <div class="overflow-x-auto hidden md:flex md:flex-col">
-                <div class="flex gap-2 md:gap-5 items-center overflow-x-auto absolute bottom-2 left-2 md:left-10 lg:left-14">
-                    <div class="w-[250px] h-[200px] bg-[#fff] rounded-xl overflow-hidden">
-                        <img src="http://images.overdrive.in/wp-content/uploads/2024/05/Untitled-design-2024-05-10T105517.989-900x506.png"
-                            alt="" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-[250px] h-[200px] bg-[#fff] rounded-xl overflow-hidden">
-                        <img src="https://5.imimg.com/data5/SELLER/Default/2022/9/MZ/RW/RG/10390332/innova-crysta-car-rental-service-500x500.jpg" alt=""
-                            class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-[250px] h-[200px] bg-[#fff] rounded-xl overflow-hidden">
-                        <img src="https://imgd-ct.aeplcdn.com/664x415/n/s14t6ra_1421876.jpg?q=80" alt=""
-                            class="w-full h-full object-cover">
-                    </div>
-                </div>
-            </div> -->
         </div>
         
     </div>
@@ -1907,57 +2003,6 @@ nav {
 
     
 
-    <!-- <div class="hero">
-        <div class="slider-container">
-            <div class="slide active">
-                <img src="https://images.pexels.com/photos/248747/pexels-photo-248747.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Taxi Service 1" class="hero-image">
-                <div class="book-snap">
-                    <i class="fas fa-bolt"></i> Book in a Snap
-                </div>
-                <div class="overlay">
-                    <h1 class="tagline">Seamless booking for a hassle-free travel experience.</h1>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                    alt="Taxi Service 2" class="hero-image">
-                <div class="book-snap">
-                    <i class="fas fa-bolt"></i> Book in a Snap
-                </div>
-                <div class="overlay">
-                    <h1 class="tagline">Fast & Reliable Taxi Service.</h1>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="https://images.pexels.com/photos/1429775/pexels-photo-1429775.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Taxi Service 3" class="hero-image">
-                <div class="book-snap">
-                    <i class="fas fa-bolt"></i> Book in a Snap
-                </div>
-                <div class="overlay">
-                    <h1 class="tagline">Your Ride, Your Way.</h1>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="https://images.pexels.com/photos/248370/pexels-photo-248370.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Taxi Service 4" class="hero-image">
-                <div class="book-snap">
-                    <i class="fas fa-bolt"></i> Book in a Snap
-                </div>
-                <div class="overlay">
-                    <h1 class="tagline">Safe & Comfortable Journeys.</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="slider-dots">
-            <div class="dot active" data-slide="0"></div>
-            <div class="dot" data-slide="1"></div>
-            <div class="dot" data-slide="2"></div>
-            <div class="dot" data-slide="3"></div>
-        </div>
-    </div> -->
     
 
     <!-- Contact Buttons -->
@@ -1976,14 +2021,7 @@ nav {
         <a href="https://wa.me/+91 8078589484"><i class="fab fa-whatsapp"></i></a>
     </div>
 
-    <!-- <section class="w-full relative mt-10">
-        <div class="md:flex justify-center items-center">
-            <div class="HomeBannerText text-[#fff] text-[80px] left-2 md:w-[50%] mt-[-100px] text-center">PICK ME</div>
-            <div class="flex justify-center w-full md:w-[50%]">
-                <img src="{% static 'F:\pickmetravels\pickmeproject\static\images\Carorg.png' %}" alt="">
-            </div>
-        </div>
-    </section> -->
+   
 
     <section id="about" class="">
         <div class="about-container">
@@ -2007,6 +2045,139 @@ nav {
     </section>
 
    
+    <section class="services-section">
+        <h2 class="services-title">Our Offerings Include</h2>
+        
+        <div class="services-container">
+            <!-- Service Card 1 -->
+            <div class="service-card">
+                <h3 class="service-title">Online Cab Service</h3>
+                <p class="service-text">Our online cab service is the perfect choice for quick and efficient transportation.</p>
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#6288c5" stroke-width="2">
+                        <path d="M12 44h40a4 4 0 0 0 4-4V30a6 6 0 0 0-6-6H14a6 6 0 0 0-6 6v10a4 4 0 0 0 4 4z" />
+                        <path d="M10 44v8a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-8M42 44v8a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-8" />
+                        <circle cx="20" cy="50" r="4" />
+                        <circle cx="44" cy="50" r="4" />
+                        <path d="M16 30h32M24 18h16l2 6H22z" />
+                        <circle cx="32" cy="12" r="2" />
+                    </svg>
+                </div>
+            </div>
+            
+
+            <!-- Service Card 2 -->
+            <div class="service-card">
+                <h3 class="service-title">Calicut Airport Taxi Service</h3>
+                <p class="service-text">Reliable, fast, and comfortable taxi service to and from Calicut International Airport.</p>
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#6288c5" stroke-width="2">
+                        <!-- Taxi Body -->
+                        <rect x="10" y="30" width="44" height="14" rx="4" />
+                        <path d="M16 30l4-8h24l4 8" />
+                        <path d="M22 22v-4a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v4" />
+                        <!-- Wheels -->
+                        <circle cx="18" cy="50" r="4" />
+                        <circle cx="46" cy="50" r="4" />
+                        <!-- Airport Symbol - Plane -->
+                        <path d="M32 12l6 10h-4l-6-10h4z" />
+                        <path d="M26 16l6 6h-4l-6-6h4z" />
+                        <path d="M38 16l-6 6h4l6-6h-4z" />
+                    </svg>
+                </div>
+            </div>
+            
+
+            <!-- Service Card 3 -->
+            <div class="service-card">
+                <h3 class="service-title">Local Pickup & Drop Service</h3>
+                <p class="service-text">Want to make a fast trip across town? We assure a timely and comfortable delivery to your location.</p>
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#6288c5" stroke-width="2">
+                        <!-- Car Body -->
+                        <rect x="8" y="30" width="48" height="12" rx="4" />
+                        <path d="M16 30l4-8h24l4 8" />
+                        <circle cx="16" cy="48" r="4" />
+                        <circle cx="48" cy="48" r="4" />
+                        <!-- Pickup & Drop Pins -->
+                        <circle cx="12" cy="14" r="4" />
+                        <circle cx="52" cy="14" r="4" />
+                        <path d="M12 18v8M52 18v8" />
+                        <!-- Path Connecting Pins -->
+                        <path d="M12 26c12 4 28 4 40 0" stroke-dasharray="4,4" />
+                    </svg>
+                </div>
+            </div>
+            
+
+            <!-- Service Card 4 -->
+            <div class="service-card">
+                <h3 class="service-title">Online Taxi Service</h3>
+                <p class="service-text">Booking a taxi has never been simpler! Our user-friendly online booking platform allows you to reserve a taxi with just a few clicks.</p>
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#6288c5" stroke-width="2">
+                        <!-- Mobile Phone -->
+                        <rect x="16" y="8" width="32" height="48" rx="4" />
+                        <path d="M28 12h8M24 48h16" />
+                        <!-- Taxi Icon Inside Phone -->
+                        <path d="M22 26h20l4 6v6H18v-6z" />
+                        <circle cx="22" cy="42" r="3" />
+                        <circle cx="42" cy="42" r="3" />
+                        <path d="M25 26l3-5h8l3 5" />
+                        <!-- WiFi Signal (representing online service) -->
+                        <path d="M32 16c4 0 6 2 8 4M28 20c3-2 6-2 8 0" />
+                    </svg>
+                </div>
+            </div>
+            
+
+            <!-- Service Card 5 -->
+            <div class="service-card">
+                <h3 class="service-title">Best Taxi Service in Calicut</h3>
+                <p class="service-text">We proudly offer the best taxi service in Kozhikode. Our service is known for its reliability and punctuality.</p>
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#6288c5" stroke-width="2">
+                        <!-- Taxi Body -->
+                        <path d="M10 36h44l6 8v6H4v-6z" />
+                        <path d="M20 36v-6h24v6" />
+                        <circle cx="18" cy="50" r="4" />
+                        <circle cx="46" cy="50" r="4" />
+                        <!-- Taxi Sign -->
+                        <rect x="25" y="22" width="14" height="6" />
+                        <!-- Checkered Taxi Pattern -->
+                        <path d="M14 42h4M20 42h4M26 42h4M32 42h4M38 42h4M44 42h4" />
+                    </svg>
+                </div>
+            </div>
+            
+
+            <!-- Service Card 6 -->
+            <div class="service-card">
+                <h3 class="service-title">Outstation Taxi Service</h3>
+                <p class="service-text">Outstation Taxi Service – Safe, comfortable, and reliable long-distance rides anytime.</p>
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#6288c5" stroke-width="2">
+                        <!-- Car Body -->
+                        <path d="M10 40h44l6 8v6H4v-6z" />
+                        <path d="M20 40v-6h24v6" />
+                        <circle cx="16" cy="52" r="4" />
+                        <circle cx="48" cy="52" r="4" />
+                        <!-- Road Lines -->
+                        <path d="M8 56h4M16 56h4M24 56h4M32 56h4M40 56h4M48 56h4" />
+                        <!-- Location Pin -->
+                        <path d="M32 12a6 6 0 016 6c0 3-3 8-6 12-3-4-6-9-6-12a6 6 0 016-6z" />
+                        <circle cx="32" cy="18" r="2" />
+                    </svg>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+
+
+
+
     <section style="margin-top: 100px;" id="cabs">
         <h2 class="section-title">Pick Your Ride</h2>
         {% if vehicles %}
@@ -2016,6 +2187,11 @@ nav {
                 <!-- For each vehicle card -->
                 <div class="vehicle-image-container">
                     {% if vehicle.images.all %}
+                    <!-- Left Navigation Arrow -->
+                    <div class="slide-arrow prev-arrow">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    
                     {% for image in vehicle.images.all %}
                     {% if forloop.first %}
                     <img src="{{ image.image.url }}" alt="{{ vehicle.name }}" class="vehicle-image showing" data-index="0">
@@ -2024,20 +2200,16 @@ nav {
                         data-index="{{ forloop.counter0 }}">
                     {% endif %}
                     {% endfor %}
-        
-                    {% if vehicle.images.all.count > 1 %}
-                    <div class="image-nav">
-                        {% for image in vehicle.images.all %}
-                        <div class="image-nav-dot {% if forloop.first %}active{% endif %}"
-                            data-index="{{ forloop.counter0 }}"></div>
-                        {% endfor %}
+                    
+                    <!-- Right Navigation Arrow -->
+                    <div class="slide-arrow next-arrow">
+                        <i class="fas fa-chevron-right"></i>
                     </div>
-                    {% endif %}
-                    {% else %}
-                    <img src="images/noimage.png" alt="No image available" class="vehicle-image">
+                    
                     {% endif %}
                 </div>
-        
+    
+                <!-- Rest of your existing code -->
                 <div class="vehicle-details">
                     <div class="vehicle-name">{{ vehicle.name }}</div>
                     <div class="vehicle-price">₹{{ vehicle.per_day_rate }} per day</div>
@@ -2048,14 +2220,9 @@ nav {
                         <span>Allow Daily: {% if vehicle.allow_daily %} Yes {% else %} No {% endif %}</span>
                     </div>
                     
-                    <!-- WhatsApp Button -->
-                    
-                    <button class="whatsapp-button "style="margin-top: 10px;" onclick="sendWhatsAppMessage('{{ vehicle.name }}', '{{ vehicle.per_day_rate }}', '{{ vehicle.seating_capacity }}', '{{ vehicle.additional_km_rate }}', '{{ vehicle.allow_daily }}')">
-                        <i class="fab fa-whatsapp" ></i> Book Your Cab
+                    <button class="whatsapp-button" style="margin-top: 10px;" onclick="sendWhatsAppMessage('{{ vehicle.name }}', '{{ vehicle.per_day_rate }}', '{{ vehicle.seating_capacity }}', '{{ vehicle.additional_km_rate }}', '{{ vehicle.allow_daily }}')">
+                        <i class="fab fa-whatsapp"></i> Book Your Cab
                     </button>
-                    
-                    
-                    
                 </div>
             </div>
             {% endfor %}
@@ -2067,9 +2234,103 @@ nav {
         {% endif %}
     </section>
     
-    
+    <style>
+        /* Styling for the image container and arrows */
+.vehicle-image-container {
+    position: relative;
+    overflow: hidden;
+}
 
-    
+.slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.slide-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev-arrow {
+    left: 10px;
+}
+
+.next-arrow {
+    right: 10px;
+}
+
+.vehicle-image {
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease;
+}
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Find all vehicle cards
+    document.querySelectorAll('.vehicle-card').forEach(card => {
+        const images = card.querySelectorAll('.vehicle-image');
+        const prevArrow = card.querySelector('.prev-arrow');
+        const nextArrow = card.querySelector('.next-arrow');
+        
+        // Only set up slider if there are multiple images
+        if (images.length <= 1) {
+            // Hide arrows if only one or no images
+            if (prevArrow) prevArrow.style.display = 'none';
+            if (nextArrow) nextArrow.style.display = 'none';
+            return;
+        }
+        
+        let currentIndex = 0;
+        
+        // Function to show a specific image
+        function showImage(index) {
+            // Hide all images
+            images.forEach(img => {
+                img.style.display = 'none';
+                img.classList.remove('showing');
+            });
+            
+            // Show the current image
+            images[index].style.display = 'block';
+            images[index].classList.add('showing');
+            
+            // Update current index
+            currentIndex = index;
+        }
+        
+        // Add click event to previous arrow
+        prevArrow.addEventListener('click', function() {
+            let newIndex = currentIndex - 1;
+            if (newIndex < 0) {
+                newIndex = images.length - 1; // Loop to last image
+            }
+            showImage(newIndex);
+        });
+        
+        // Add click event to next arrow
+        nextArrow.addEventListener('click', function() {
+            let newIndex = currentIndex + 1;
+            if (newIndex >= images.length) {
+                newIndex = 0; // Loop to first image
+            }
+            showImage(newIndex);
+        });
+    });
+});
+    </script>
         
 
        
@@ -2137,19 +2398,29 @@ nav {
             <span class="availability {% if package.available %}available{% else %}not-available{% endif %}">
               {% if package.available %} ✅ Available {% else %} ❌ Not Available {% endif %}
             </span>
+
+            <!-- WhatsApp Button -->
+            <a href="https://wa.me/918078589484?text={{ package.name|urlencode }}%0A{{ package.description|urlencode }}%0ARate: ₹{{ package.rate }}%0AAvailability: {% if package.available %}✅ Available{% else %}❌ Not Available{% endif %}" 
+            class="whatsapp-button " 
+            target="_blank" style="margin-top: 20px;">
+            <i class="fa-brands fa-whatsapp"></i> Send on WhatsApp
+         </a>
+         
           </div>
         </li>
       {% endfor %}
     </ul>
-  </section>
+</section>
 
-  <section class="testimonial-section">
+
+<section class="testimonial-section">
     <h2 class="section-title">What Our Customers Say</h2>
 
-    <div class="testimonial-container">
-        <div class="testimonial-wrapper">
+    <!-- Swiper Container -->
+    <div class="swiper testimonial-slider">
+        <div class="swiper-wrapper">
             {% for testimonial in testimonials %}
-                <div class="testimonial-card">
+                <div class="swiper-slide testimonial-card">
                     <div class="flex justify-start gap-2">
                         <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
                         <div class="flex flex-col gap-1">
@@ -2160,10 +2431,17 @@ nav {
                 </div>
             {% endfor %}
         </div>
+
+        <!-- Optional Pagination & Navigation -->
+        <div class="swiper-pagination"></div>
+        <!-- <div class="swiper-button-prev"></div> -->
+        <!-- <div class="swiper-button-next"></div> -->
     </div>
 
     <div class="decorative-star">&#10022;</div>
 </section>
+
+
 
 
 <section id="contact">
@@ -2429,32 +2707,26 @@ nav {
         });
     </script>
     <!-- testimonial scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        let currentIndex = 0;
-        const wrapper = document.querySelector('.testimonial-wrapper');
-        const testimonials = document.querySelectorAll('.testimonial-card');
-        const totalTestimonials = testimonials.length;
-
-        function autoScrollTestimonials() {
-            currentIndex = (currentIndex + 1) % totalTestimonials;
-            const offset = -currentIndex * 620; // 600px card width + 10px margin
-            wrapper.style.transform = `translateX(${offset}px)`;
-        }
-
-        setInterval(autoScrollTestimonials, 3000); // Scroll every 3 seconds
-
-
-        // whats app button booking cab
-        function sendWhatsAppMessage(name, rate, seats, extra_km, allow_daily) {
-                            let message = `${name}%0A
-                            Rate: ₹${rate} per day%0A
-                            Seats: ${seats}%0A
-                            Extra km: ₹${extra_km}%0A
-                            Allow Daily: ${allow_daily === "True" ? "Yes" : "No"}`;
-                    
-                            let url = `https://wa.me/918129139506?text=${message}`;
-                            window.open(url, "_blank");
-                        }
+        document.addEventListener("DOMContentLoaded", function () {
+            var swiper = new Swiper(".testimonial-slider", {
+                loop: true,  
+                autoplay: {
+                    delay: 3000, 
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                slidesPerView: 1, // Default: 1 slide (for mobile)
+                spaceBetween: 20, // Adjust spacing
+                breakpoints: {
+                    768: { slidesPerView: 2, spaceBetween: 20 }, // Show 2 slides on screens ≥ 768px
+                }
+            });
+        });
     </script>
 </body>
 

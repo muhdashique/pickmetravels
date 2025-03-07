@@ -44,16 +44,18 @@ INSTALLED_APPS = [
     'pickmeapp',
 ]
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',  
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',  # ✅ Add this line
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'pickmeapp.middleware.NoCacheMiddleware',
 ]
+
+
 
 ROOT_URLCONF = 'pickmeproject.urls'
 

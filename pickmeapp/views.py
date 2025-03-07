@@ -232,3 +232,18 @@ def send_email(request):
         return redirect("/")  # Redirect back to the contact page
 
     return render(request, "index.html")
+
+
+
+from django.shortcuts import redirect, render
+from django.contrib.auth import logout
+from django.views.decorators.cache import never_cache
+
+@never_cache
+def logout_view(request):
+    logout(request)
+    response = redirect('login')  # Redirect to login after logout
+    response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+    return response
