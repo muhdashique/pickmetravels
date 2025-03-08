@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-xwy=#x3mslyb2#l+%g*$scbmpo2i^v$t_b438&s@+*y*758!*(
 DEBUG = True
 
 # Allow all hosts (For development only, change in production)
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'pickmetravels.com', 'www.pickmetravels.com']
 CSRF_TRUSTED_ORIGINS = [
     'https://pickmetravels.com',
 ]
@@ -88,7 +88,7 @@ DATABASES = {
         'NAME': 'pickmetravels',  # Replace with your database name
         'USER': 'postgres',  # Replace with your database username
         'PASSWORD': 'info@imc',  # Replace with your database password
-          'PASSWORD': '1234',  # Replace with your database password
+        #   'PASSWORD': '1234', 
         'HOST': 'localhost',  # Use 'localhost' for local development
         'PORT': '5432',  # Default PostgreSQL port
     }

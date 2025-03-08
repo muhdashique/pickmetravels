@@ -2189,7 +2189,7 @@ nav {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] mx-auto">
             {% for vehicle in vehicles %}
             <div class="w-full h-auto border border-white rounded-3xl overflow-hidden" data-id="{{ vehicle.id }}">
-                <div class="relative">
+                <div class="relative vehicle-slider" id="slider-{{ vehicle.id }}">
                     {% if vehicle.images.all %}
                     <div class="slide-arrow absolute left-2 top-1/2 transform -translate-y-1/2 cursor-pointer" onclick="changeSlide('{{ vehicle.id }}', 'prev')">
                         <i class="fas fa-chevron-left"></i>
@@ -2202,7 +2202,11 @@ nav {
                     {% endif %}
                     {% endfor %}
                     <div class="slide-arrow absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer" onclick="changeSlide('{{ vehicle.id }}', 'next')">
+<<<<<<< HEAD
                         <i class="fas fa-chevron-right"></i>
+=======
+                        <span><i class="fas fa-chevron-right"></i></span>
+>>>>>>> c215caa (Again Updated)
                     </div>
                     {% endif %}
                 </div>
@@ -2289,6 +2293,25 @@ nav {
             }
         }
     </script>
+    <script>
+        function changeSlide(vehicleId, direction) {
+            const slider = document.getElementById(`slider-${vehicleId}`);
+            const images = slider.getElementsByClassName('vehicle-image');
+            let currentIndex = [...images].findIndex(img => img.classList.contains('showing'));
+        
+            images[currentIndex].classList.remove('showing');
+            images[currentIndex].classList.add('hidden');
+        
+            if (direction === 'next') {
+                currentIndex = (currentIndex + 1) % images.length;
+            } else if (direction === 'prev') {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+            }
+        
+            images[currentIndex].classList.remove('hidden');
+            images[currentIndex].classList.add('showing');
+        }
+        </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
