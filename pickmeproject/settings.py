@@ -38,9 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
- 'crispy_forms',
+    'crispy_forms',
     'crispy_bootstrap5',
-    # Local apps
     'pickmeapp',
 ]
 
@@ -50,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',  # ✅ Add this line
+    'django.contrib.messages.middleware.MessageMiddleware',  
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'pickmeapp.middleware.NoCacheMiddleware',
 ]
@@ -62,7 +61,7 @@ ROOT_URLCONF = 'pickmeproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Custom templates folder
+        'DIRS': [BASE_DIR / 'templates'],  
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,7 +77,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'pickmeproject.wsgi.application'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),  # Ensure this path exists
+    os.path.join(BASE_DIR, "static"), 
 ]
 
 # Database Configuration (PostgreSQL)

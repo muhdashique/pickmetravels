@@ -1,8 +1,16 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import Vehicle, VehicleImage, Package
-from .forms import VehicleForm, VehicleImageForm
+from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.cache import never_cache
+from django.core.mail import send_mail
+
+from .models import Vehicle, VehicleImage, Package, Testimonial,VehicleImage
+from .forms import VehicleForm, VehicleImageForm, PackageForm, TestimonialForm
+
+
+
+
+# index page view
 
 def index(request):
     vehicles = Vehicle.objects.prefetch_related("images").all()
@@ -10,8 +18,9 @@ def index(request):
     testimonials = Testimonial.objects.all()
     return render(request, "index.html", {"vehicles": vehicles,'packages': packages,'testimonials': testimonials})
 
-def adminpannel(request):
-    return render(request, 'adminpannel.html')
+
+
+# login page and view 
 
 def user_login(request):
     if request.method == 'POST':
@@ -28,16 +37,17 @@ def user_login(request):
 
     return render(request, 'login.html')
 
+
+
+# logout view 
+
 def user_logout(request):
     logout(request)
     messages.success(request, 'You have been logged out.')
     return redirect('/')
 
 
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib import messages
-from .models import Vehicle, VehicleImage
-from .forms import VehicleForm, VehicleImageForm
+# vehicle add page views
 
 def add_vehicle(request):
     if request.method == "POST":
@@ -47,14 +57,13 @@ def add_vehicle(request):
         if vehicle_form.is_valid() and image_form.is_valid():
             vehicle = vehicle_form.save()
 
-            # Handle multiple image uploads
-            images = request.FILES.getlist('images')  # Get all uploaded images
+         
+            images = request.FILES.getlist('images') 
             for img in images:
                 VehicleImage.objects.create(vehicle=vehicle, image=img)
 
             messages.success(request, 'Vehicle added successfully!')
-            return redirect('add_vehicle')  # Redirect back to form
-
+            return redirect('add_vehicle')  
         else:
             messages.error(request, 'There was an error with your form submission.')
 
@@ -62,17 +71,17 @@ def add_vehicle(request):
         vehicle_form = VehicleForm()
         image_form = VehicleImageForm()
 
-    vehicles = Vehicle.objects.all()  # Fetch all vehicles for display
+    vehicles = Vehicle.objects.all()  
 
     return render(request, "add_vehicle.html", {
         'vehicle_form': vehicle_form,
         'image_form': image_form,
-        'vehicles': vehicles  # Pass vehicles to template
+        'vehicles': vehicles 
     })
 
 
 
-
+# edit vehicle 
 def edit_vehicle(request, vehicle_id):
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
 
@@ -89,11 +98,7 @@ def edit_vehicle(request, vehicle_id):
     return render(request, "edit_vehicle.html", {'form': form, 'vehicle': vehicle})
 
 
-
-
-from django.shortcuts import get_object_or_404, redirect
-from django.contrib import messages
-from .models import Vehicle  # Make sure to import the correct model
+# delete vehicle
 
 def delete_vehicle(request, vehicle_id):
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
@@ -101,8 +106,7 @@ def delete_vehicle(request, vehicle_id):
     messages.success(request, 'Vehicle deleted successfully!')
     return redirect('add_vehicle')
 
-from django.shortcuts import get_object_or_404, redirect
-from .models import VehicleImage
+# delete vehicle image
 
 def delete_vehicle_image(request, image_id):
     image = get_object_or_404(VehicleImage, id=image_id)
@@ -110,11 +114,7 @@ def delete_vehicle_image(request, image_id):
     return redirect(request.META.get('HTTP_REFERER', 'add_vehicle'))
 
 
-
-
-from django.shortcuts import render, redirect
-from .models import Package
-from .forms import PackageForm
+# add tour package
 
 def add_package(request):
     if request.method == "POST":
@@ -130,9 +130,7 @@ def add_package(request):
     return render(request, 'add_package.html', {'form': form, 'packages': packages})
 
 
-
-
-
+# edit tour package
 
 def edit_package(request, package_id):
     package = get_object_or_404(Package, id=package_id)
@@ -147,9 +145,7 @@ def edit_package(request, package_id):
     return render(request, 'edit_package.html', {'form': form, 'package': package})
 
 
-
-
-
+# delete tour package
 
 def delete_package(request, package_id):
     package = get_object_or_404(Package, id=package_id)
@@ -159,12 +155,7 @@ def delete_package(request, package_id):
 
 
 
-
-
-
-from django.shortcuts import render, redirect
-from .models import Testimonial
-from .forms import TestimonialForm
+# add testimonial
 
 def add_testimonial(request):
     testimonials = Testimonial.objects.all()  # Fetch all testimonials to display
@@ -179,8 +170,7 @@ def add_testimonial(request):
     return render(request, 'add_testimonial.html', {'form': form, 'testimonials': testimonials})
 
 
-
-
+# edit testimonial
 
 def edit_testimonial(request, testimonial_id):
     testimonial = get_object_or_404(Testimonial, id=testimonial_id)
@@ -194,6 +184,9 @@ def edit_testimonial(request, testimonial_id):
     
     return render(request, 'edit_testimonial.html', {'form': form, 'testimonial': testimonial})
 
+
+# delete testimonial
+
 def delete_testimonial(request, testimonial_id):
     testimonial = get_object_or_404(Testimonial, id=testimonial_id)
     testimonial.delete()
@@ -201,12 +194,7 @@ def delete_testimonial(request, testimonial_id):
 
 
 
-
-
-
-from django.core.mail import send_mail
-from django.shortcuts import render, redirect
-from django.contrib import messages
+# sent mail
 
 def send_email(request):
     if request.method == "POST":
@@ -235,15 +223,6 @@ def send_email(request):
 
 
 
-from django.shortcuts import redirect, render
-from django.contrib.auth import logout
-from django.views.decorators.cache import never_cache
 
-@never_cache
-def logout_view(request):
-    logout(request)
-    response = redirect('login')  # Redirect to login after logout
-    response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
-    response['Pragma'] = 'no-cache'
-    response['Expires'] = '0'
-    return response
+
+
