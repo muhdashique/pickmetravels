@@ -1569,10 +1569,10 @@
         align-items: center;
     }
 
-    .testimonial-wrapper {
+    .swipper-wrapper {
         display: flex;
         transition: transform 1s ease-in-out;
-        width: 650px; /* Ensures all items fit in a row */
+        width: 650px;
         color: #45a049;
         gap: 20px;
         justify-content: center;
@@ -2202,11 +2202,7 @@ nav {
                     {% endif %}
                     {% endfor %}
                     <div class="slide-arrow absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer" onclick="changeSlide('{{ vehicle.id }}', 'next')">
-<<<<<<< HEAD
-                        <i class="fas fa-chevron-right"></i>
-=======
                         <span><i class="fas fa-chevron-right"></i></span>
->>>>>>> c215caa (Again Updated)
                     </div>
                     {% endif %}
                 </div>
@@ -2473,11 +2469,11 @@ Allow Daily: ${allowDaily === "True" ? "Yes" : "No"}`;
         <div class="swiper-wrapper">
             {% for testimonial in testimonials %}
                 <div class="swiper-slide testimonial-card">
-                    <div class="flex justify-start gap-2">
+                    <div class="grid grid-cols-1 place-items-center md:flex justify-start gap-2">
                         <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
                         <div class="flex flex-col gap-1">
-                            <div class="text-start text-xl font-bold">{{ testimonial.name }}</div>
-                            <div class="text-start">{{ testimonial.review }}</div>
+                            <div class="md:text-start text-xl font-bold">{{ testimonial.name }}</div>
+                            <div class="md:text-start">{{ testimonial.review }}</div>
                         </div>
                     </div>
                 </div>
@@ -2814,26 +2810,6 @@ Allow Daily: ${allowDaily === "True" ? "Yes" : "No"}`;
         showImage(currentIndex); // Show the first image initially
     });
 });
-
-        <script>
-        function changeSlide(vehicleId, direction) {
-            const slider = document.getElementById(`slider-${vehicleId}`);
-            const images = slider.getElementsByClassName('vehicle-image');
-            let currentIndex = [...images].findIndex(img => img.classList.contains('showing'));
-        
-            images[currentIndex].classList.remove('showing');
-            images[currentIndex].classList.add('hidden');
-        
-            if (direction === 'next') {
-                currentIndex = (currentIndex + 1) % images.length;
-            } else if (direction === 'prev') {
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-            }
-        
-            images[currentIndex].classList.remove('hidden');
-            images[currentIndex].classList.add('showing');
-        }
-        </script>
 
     </script>
 </body>
