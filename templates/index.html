@@ -1834,13 +1834,14 @@ nav {
         .pre-order {
             background-color: #FFD700;
             color: black;
-            padding: 0.75rem 2rem;
+            padding: 1.5rem 2.5rem;
             text-transform: uppercase;
             font-weight: bold;
             border: none;
             cursor: pointer;
             align-self: flex-start;
             margin-top: 1rem;
+            font-size: x-large  ;
         }
         
         .car-image {
@@ -1975,11 +1976,15 @@ nav {
     </style>
 </head>
 <body>
-    <div class="h-screen w-full mb-20">
+    <div class="h-screen w-full relative">
+        <div class="absolute top-0 bottom-0 left-0 right-0 -z-10  bg-[#000]">
+            <img src="https://img.freepik.com/free-photo/cement-street-financial-downtown-shanghai-travel_1417-886.jpg?t=st=1741407223~exp=1741410823~hmac=16c7de04a3d64741ae1d98b20404d702101d646b9af2610a2381a4497a686cc3&w=1380" alt="" class="w-full h-full object-cover opacity-60">
+        </div>
+        
         <div class="lg:flex lg:flex-row-reverse justify-center items-center h-screen lg:w-full relative h-full">
-            <div class="  md:w-[1500px] lg:rotate-90deg lg:top-[-900px] bg-[#FFD700] lg:h-[1500px] rounded-full absolute right-[-400px] top-[-150px] lg:right-[-500px] w-[700px] h-[700px] rotate-[120deg]">
+            <!-- <div class="  md:w-[1500px] lg:rotate-90deg lg:top-[-900px] bg-[#FFD700] lg:h-[1500px] rounded-full absolute right-[-400px] top-[-150px] lg:right-[-500px] w-[700px] h-[700px] rotate-[120deg]">
                 
-            </div>
+            </div> -->
             <div class="w-full h-full flex justify-center items-center">
                 <div class="lg:w-[100%] md:h-[60%] h-full z-[999] flex justify-center items-center">
                     <img src="https://www.airportmelbournetaxiservice.com.au/wp-content/uploads/2023/08/Normal-Sedan.png" alt="Yellow Porsche" class=" w-full h-full object-contain">
@@ -1987,7 +1992,7 @@ nav {
             </div>
             <div class="lg:w-[40%] lg:pl-14 px-2 w-full mt-2 mb-10 absolute bottom-[-50px] md:bottom-0 md:relative">
                 <div>
-                    <h1 class="text-[#fff] lg:text-[40px] mb-2 font-black leading-tight text-3xl">Pick Me Travels <span class="block text-[#FFD700] text-2xl"> Where Every Ride Feels Like First Class</span></h1>
+                    <h1 class="text-[#fff] lg:text-[100px] mb-2 font-black leading-tight text-3xl w-[900px]">Pick Me Travels <span class="block text-[#FFD700] text-5xl mb-5 leading-normal"> Where Every Ride Feels Like First Class</span></h1>
                     <!-- <p class="text-[#fff] text-sm md:text-base">
                        We offers convenient transportation for city rides, airport transfers, and outstation trips. Passengers can book via phone, app, or website, with options like GPS tracking, online payments, and professional drivers for a safe and comfortable journey.
                     </p> -->
@@ -2178,49 +2183,47 @@ nav {
 
 
 
-    <section style="margin-top: 100px;" id="cabs">
-        <h2 class="section-title">Pick Your Ride</h2>
+    <section class="mt-24" id="cabs">
+        <h2 class="text-3xl font-bold text-center mb-8">Pick Your Ride</h2>
         {% if vehicles %}
-        <div class="vehicles-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] mx-auto">
             {% for vehicle in vehicles %}
-            <div class="vehicle-card" data-id="{{ vehicle.id }}">
-                <!-- For each vehicle card -->
-                <div class="vehicle-image-container">
+            <div class="w-full h-auto border border-white rounded-3xl overflow-hidden" data-id="{{ vehicle.id }}">
+                <div class="relative">
                     {% if vehicle.images.all %}
-                    <!-- Left Navigation Arrow -->
-                    <div class="slide-arrow prev-arrow">
+                    <div class="slide-arrow absolute left-2 top-1/2 transform -translate-y-1/2 cursor-pointer">
                         <i class="fas fa-chevron-left"></i>
                     </div>
-                    
                     {% for image in vehicle.images.all %}
                     {% if forloop.first %}
-                    <img src="{{ image.image.url }}" alt="{{ vehicle.name }}" class="vehicle-image showing" data-index="0">
+                    <img src="{{ image.image.url }}" alt="{{ vehicle.name }}" class="vehicle-image showing w-full h-[200px] object-cover" data-index="0">
                     {% else %}
-                    <img src="{{ image.image.url }}" alt="{{ vehicle.name }}" class="vehicle-image" style="display: none;"
-                        data-index="{{ forloop.counter0 }}">
+                    <img src="{{ image.image.url }}" alt="{{ vehicle.name }}" class="vehicle-image w-full h-[200px] object-cover hidden" data-index="{{ forloop.counter0 }}">
                     {% endif %}
                     {% endfor %}
-                    
-                    <!-- Right Navigation Arrow -->
-                    <div class="slide-arrow next-arrow">
+                    <div class="slide-arrow absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer">
                         <i class="fas fa-chevron-right"></i>
                     </div>
-                    
                     {% endif %}
                 </div>
     
-                <!-- Rest of your existing code -->
-                <div class="vehicle-details">
-                    <div class="vehicle-name">{{ vehicle.name }}</div>
-                    <div class="vehicle-price">₹{{ vehicle.per_day_rate }} per day</div>
-                    <div class="vehicle-description">{{ vehicle.description|truncatechars:100 }}</div>
-                    <div class="vehicle-meta">
-                        <span>Seats: {{ vehicle.seating_capacity }}</span>
-                        <span>Extra km: ₹{{ vehicle.additional_km_rate }}</span>
+                <div class="p-4">
+                    <div class="text-xl font-bold">{{ vehicle.name }}</div>
+                    <div class="text-lg font-semibold text-green-500">₹{{ vehicle.per_day_rate }} per day</div>
+                    <div class="vehicle-description text-gray-700 overflow-hidden relative" id="desc-{{ vehicle.id }}">
+                        {{ vehicle.description|truncatechars:100 }}
+                        {% if vehicle.description|length > 90 %}
+                        <span class="text-blue-500 cursor-pointer" onclick="toggleDescription('{{ vehicle.id }}', `{{ vehicle.description }}`, `{{ vehicle.description|truncatechars:100 }}`)" id="toggle-btn-{{ vehicle.id }}">See More</span>
+                        {% endif %}
+                    </div>
+                    <div class="vehicle-meta text-sm text-gray-500 mt-2">
+                        <span>Seats: {{ vehicle.seating_capacity }}</span> | 
+                        <span>Extra km: ₹{{ vehicle.additional_km_rate }}</span> | 
                         <span>Allow Daily: {% if vehicle.allow_daily %} Yes {% else %} No {% endif %}</span>
                     </div>
                     
-                    <button class="whatsapp-button" style="margin-top: 10px;" onclick="sendWhatsAppMessage('{{ vehicle.name }}', '{{ vehicle.per_day_rate }}', '{{ vehicle.seating_capacity }}', '{{ vehicle.additional_km_rate }}', '{{ vehicle.allow_daily }}')">
+                    <button class="bg-green-500 text-white px-4 py-2 rounded-md w-full mt-4 hover:bg-green-600"
+                        onclick="sendWhatsAppMessage('{{ vehicle.name }}', '{{ vehicle.per_day_rate }}', '{{ vehicle.seating_capacity }}', '{{ vehicle.additional_km_rate }}', '{{ vehicle.allow_daily }}')">
                         <i class="fab fa-whatsapp"></i> Book Your Cab
                     </button>
                 </div>
@@ -2228,9 +2231,7 @@ nav {
             {% endfor %}
         </div>
         {% else %}
-        <div class="no-vehicles">
-            <p>No vehicles available at the moment.</p>
-        </div>
+        <div class="text-center text-gray-500">No vehicles available at the moment.</div>
         {% endif %}
     </section>
     
@@ -2272,10 +2273,22 @@ nav {
 
 .vehicle-image {
     width: 100%;
-    height: auto;
+    height: 200px;
     transition: opacity 0.3s ease;
 }
     </style>
+
+    <script>
+        function toggleDescription(vehicleId, fullDescription, shortDescription) {
+            const descriptionDiv = document.getElementById(`desc-${vehicleId}`);
+            const toggleBtn = document.getElementById(`toggle-btn-${vehicleId}`);
+            if (toggleBtn.innerText === "See More") {
+                descriptionDiv.innerHTML = `${fullDescription} <span class="text-blue-500 cursor-pointer" onclick="toggleDescription('${vehicleId}', '${fullDescription}', '${shortDescription}')" id="toggle-btn-${vehicleId}">See Less</span>`;
+            } else {
+                descriptionDiv.innerHTML = `${shortDescription} <span class="text-blue-500 cursor-pointer" onclick="toggleDescription('${vehicleId}', '${fullDescription}', '${shortDescription}')" id="toggle-btn-${vehicleId}">See More</span>`;
+            }
+        }
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -2330,6 +2343,22 @@ nav {
         });
     });
 });
+function sendWhatsAppMessage(name, rate, seats, extraKmRate, allowDaily) {
+    const phoneNumber = "YOUR_WHATSAPP_NUMBER"; // Add your WhatsApp number here
+    const message = `Hello! I would like to book a cab. 
+Vehicle: ${name}
+Per Day Rate: ₹${rate}
+Seats: ${seats}
+Extra Km Rate: ₹${extraKmRate}
+Allow Daily: ${allowDaily === "True" ? "Yes" : "No"}`;
+
+    const encodedMessage = encodeURIComponent(message); 
+    const whatsappUrl = `https://wa.me/918078589484?text=${encodedMessage}`;
+
+    
+    window.open(whatsappUrl, "_blank");
+}
+
     </script>
         
 
@@ -2727,6 +2756,42 @@ nav {
                 }
             });
         });
+        // //////////
+        document.addEventListener("DOMContentLoaded", function () {
+    const vehicleCards = document.querySelectorAll(".w-full");
+
+    vehicleCards.forEach((card) => {
+        const images = card.querySelectorAll(".vehicle-image");
+        const prevArrow = card.querySelector(".prev-arrow");
+        const nextArrow = card.querySelector(".next-arrow");
+
+        if (!images.length) return;
+
+        let currentIndex = 0;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.style.display = i === index ? "block" : "none";
+            });
+        }
+
+        // Ensure arrows only run if multiple images are present
+        if (images.length > 1) {
+            prevArrow.addEventListener("click", function () {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                showImage(currentIndex);
+            });
+
+            nextArrow.addEventListener("click", function () {
+                currentIndex = (currentIndex + 1) % images.length;
+                showImage(currentIndex);
+            });
+        }
+
+        showImage(currentIndex); // Show the first image initially
+    });
+});
+
     </script>
 </body>
 
