@@ -2792,6 +2792,26 @@ Allow Daily: ${allowDaily === "True" ? "Yes" : "No"}`;
     });
 });
 
+        <script>
+        function changeSlide(vehicleId, direction) {
+            const slider = document.getElementById(`slider-${vehicleId}`);
+            const images = slider.getElementsByClassName('vehicle-image');
+            let currentIndex = [...images].findIndex(img => img.classList.contains('showing'));
+        
+            images[currentIndex].classList.remove('showing');
+            images[currentIndex].classList.add('hidden');
+        
+            if (direction === 'next') {
+                currentIndex = (currentIndex + 1) % images.length;
+            } else if (direction === 'prev') {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+            }
+        
+            images[currentIndex].classList.remove('hidden');
+            images[currentIndex].classList.add('showing');
+        }
+        </script>
+
     </script>
 </body>
 
