@@ -5,7 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PICK ME TRAVELS</title>
+    <head>
+        <title>PICK ME TRAVELS</title>
+        <link rel="icon" href="{% static 'D:\IMC project\pickmetravelscopy\pickmeproject\static\images\favicon.ico' %}" type="image/x-icon" style="width: 350px; height: 350px;">
+    </head>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1978,15 +1982,15 @@ nav {
     </style>
 </head>
 <body>
-    <div class="h-screen w-full relative">
+    <!-- <div class="h-screen w-full relative">
         <div class="absolute top-0 bottom-0 left-0 right-0 -z-10  bg-[#000]">
             <img src="{% static 'images/bannerimg.jpg' %}" alt="" class="w-full h-full object-cover opacity-60">
         </div>
         
         <div class="lg:flex lg:flex-row-reverse justify-center items-center h-screen lg:w-full relative h-full">
-            <!-- <div class="  md:w-[1500px] lg:rotate-90deg lg:top-[-900px] bg-[#FFD700] lg:h-[1500px] rounded-full absolute right-[-400px] top-[-150px] lg:right-[-500px] w-[700px] h-[700px] rotate-[120deg]">
+            <div class="  md:w-[1500px] lg:rotate-90deg lg:top-[-900px] bg-[#FFD700] lg:h-[1500px] rounded-full absolute right-[-400px] top-[-150px] lg:right-[-500px] w-[700px] h-[700px] rotate-[120deg]">
                 
-            </div> -->
+            </div>
             <div class="w-full h-full flex justify-center items-center">
                 <div class="lg:w-[100%] md:h-[60%] h-full z-[999] flex justify-center items-center">
                     <img src="https://www.airportmelbournetaxiservice.com.au/wp-content/uploads/2023/08/Normal-Sedan.png" alt="Yellow Porsche" class=" w-full h-full object-contain">
@@ -1995,9 +1999,9 @@ nav {
             <div class="lg:w-[40%] lg:pl-14 px-2 w-full mt-2 mb-10 absolute bottom-[-50px] md:bottom-0 md:relative">
                 <div>
                     <h1 class="text-[#fff] lg:text-[100px] mb-2 font-black leading-tight text-3xl w-[900px]">Pick Me Travels <span class="block text-[#FFD700] text-5xl mb-5 leading-normal"> Where Every Ride Feels Like First Class</span></h1>
-                    <!-- <p class="text-[#fff] text-sm md:text-base">
+                    <p class="text-[#fff] text-sm md:text-base">
                        We offers convenient transportation for city rides, airport transfers, and outstation trips. Passengers can book via phone, app, or website, with options like GPS tracking, online payments, and professional drivers for a safe and comfortable journey.
-                    </p> -->
+                    </p>
                     <a href="tel:+918078589484">
                         <button class="pre-order">Book Your Cab</button>
                     </a>
@@ -2005,17 +2009,235 @@ nav {
             </div>
         </div>
         
+    </div> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        .banner-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .banner-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0;
+        }
+        
+        .banner-slide.active {
+            opacity: 1;
+        }
+        
+        .slide1 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://pix10.agoda.net/geo/city/14382/1_14382_02.jpg?ca=6&ce=1&s=1920x822");
+        }
+        
+        .slide2 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://media.easemytrip.com/media/Blog/India/636994150616126846/636994150616126846HJ6qCA.jpg");
+        }
+        
+        .slide3 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/View_point_of_Thamarassery_Churam.jpg/1200px-View_point_of_Thamarassery_Churam.jpg");
+        }
+        
+        .banner-content {
+            color: white;
+            max-width: 80%;
+            padding: 20px;
+        }
+        
+        .banner-tag {
+            color: #ff3a3a;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .banner-tag::before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 2px;
+            background-color: #ff3a3a;
+            margin-right: 10px;
+        }
+        
+        .banner-title {
+            font-size: 60px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+        
+        .social-icons {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px 0;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        
+        .contact-icons {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+        
+        .contact-icon {
+            width: 15px;
+            height: 15px;
+            background-color: #ff3a3a;
+            border-radius: 50%;
+            margin: 10px;
+        }
+        
+        .contact-icon.active {
+            width: 40px;
+            border-radius: 7px;
+            transition: all 0.3s ease;
+        }
+        
+        .bottom-contact {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            z-index: 100;
+        }
+        
+        .bottom-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #ff3a3a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 1px;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .banner-title {
+                font-size: 36px;
+            }
+            
+            .banner-tag {
+                font-size: 16px;
+            }
+        }
+        
+    </style>
+    <div class="banner-container">
+    <div class="banner-slide slide1 active">
+        <div>
+            <h1 class="text-[#fff] lg:text-[100px] mb-2 font-black leading-tight text-3xl">Pick Me Travels <span class="block text-[#FFD700] md:text-5xl text-4xl mb-5 leading-tight"> Where Every Ride Feels Like First Class</span></h1>
+           
+            <a href="tel:+918078589484">
+                <button class="px-10 py-2 text-lg md:text-xl lg:text-2xl bg-[#FFD700]">Book Your Cab</button>
+            </a>
+        </div>
     </div>
-    
+
+    <div class="banner-slide slide2">
+        <div>
+            <h1 class="text-[#fff] lg:text-[100px] mb-2 font-black leading-tight text-3xl">Pick Me Travels <span class="block text-[#FFD700] md:text-5xl text-4xl mb-5 leading-tight"> Where Every Ride Feels Like First Class</span></h1>
+           
+            <a href="tel:+918078589484">
+                <button class="px-10 py-2 text-lg md:text-xl lg:text-2xl bg-[#FFD700]">Book Your Cab</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="banner-slide slide3">
+        <div>
+            <h1 class="text-[#fff] lg:text-[100px] mb-2 font-black leading-tight text-3xl">Pick Me Travels <span class="block text-[#FFD700] md:text-5xl text-4xl mb-5 leading-tight"> Where Every Ride Feels Like First Class</span></h1>
+           
+            <a href="tel:+918078589484">
+                <button class="px-10 py-2 text-lg md:text-xl lg:text-2xl bg-[#FFD700]">Book Your Cab</button>
+            </a>
+        </div>
+    </div>
+</div>
 
     
-
+    <script>
+        // Slider functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.banner-slide');
+        const contactDots = document.querySelectorAll('.contact-icon');
+        
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            contactDots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = (index + slides.length) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+            contactDots[currentSlide].classList.add('active');
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        // Auto slide every 5 seconds
+        setInterval(nextSlide, 5000);
+        
+        // Click on dots to navigate
+        contactDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+    </script>
     
 
     <!-- Contact Buttons -->
     <div class="contact-buttons">
         <a href="https://www.instagram.com/pickmetravels?igsh=Znh4cTZnZXJiMmIw"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://wa.me/+91 8078589484" target="Hello I Wand To Book a Cab">
+        <a href="https://wa.me/918078589484" target="Hello I Wand To Book a Cab">
     <i class="fab fa-whatsapp"></i>
 </a>
 
@@ -2025,7 +2247,7 @@ nav {
     <!-- Mobile Contact Buttons -->
     <div class="mobile-contact">
         <a href="tel:+918078589484"><i class="fas fa-phone"></i></a>
-        <a href="https://wa.me/+91 8078589484"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/918078589484"><i class="fab fa-whatsapp"></i></a>
     </div>
 
    
@@ -2044,7 +2266,7 @@ nav {
                 <div class="about-bottom">
                     <h2>About Us</h2>
                     <p>Welcome to Pickme Travels, your trusted travel partner for seamless and comfortable journeys. Whether you're planning a local ride, an intercity trip, or a customized travel experience, we are here to make your journey hassle-free and enjoyable.
-                        At Pickme Travels, we are more than just a travel service—we are a team of passionate professionals dedicated to providing safe, reliable, and affordable transportation solutions. Our fleet of well-maintained vehicles and experienced drivers ensure that every trip is smooth and comfortable..</p>
+                        At Pickme Travels, we are more than just a travel service we are a team of passionate professionals dedicated to providing safe, reliable, and affordable transportation solutions. Our fleet of well-maintained vehicles and experienced drivers ensure that every trip is smooth and comfortable..</p>
                     <a href="#" class="learn-more-btn">LEARN MORE</a>
                 </div>
             </div>
@@ -2186,7 +2408,7 @@ nav {
 
 
     <section class="mt-24" id="cabs">
-        <h2 class="section-title">Pick Your Ride</h2>
+        <h2 class="section-title">Pick Your Local Ride</h2>
         <!-- <h2 class="text-3xl font-bold text-center mb-8 section-title" style="color: white;">Pick Your Ride</h2> -->
         {% if vehicles %}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] mx-auto">
@@ -2278,6 +2500,23 @@ nav {
     width: 100%;
     height: 200px;
     transition: opacity 0.3s ease;
+}
+
+
+/* booking cab in table */
+.booking-btn {
+    background-color: #f9b200;
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.booking-btn:hover {
+    background-color: #e09600;
 }
     </style>
 
@@ -2399,7 +2638,7 @@ Allow Daily: ${allowDaily === "True" ? "Yes" : "No"}`;
                 <th style="color: #f9b200;">Description</th>
                 <th style="color: #f9b200;">Seating Capacity</th>
                 <th style="color: #f9b200;">Additional Km Rate</th>
-                <th style="color: #f9b200;">Allow Daily</th>
+                <th style="color: #f9b200;">Booking</th>
             </tr>
         </thead>
         <tbody>
@@ -2419,7 +2658,9 @@ Allow Daily: ${allowDaily === "True" ? "Yes" : "No"}`;
                 <td style="color: white;">{{ vehicle.description|truncatechars:100 }}</td>
                 <td style="color: white;">{{ vehicle.seating_capacity }}</td>
                 <td style="color: white;">₹{{ vehicle.additional_km_rate }}</td>
-                <td style="color: white;">Allow Daily: {% if vehicle.allow_daily %} Yes {% else %} No {% endif %}</td>
+                <td style="color: white;">
+                    <a href="https://wa.me/918078589484?text=I'd like to book the {{ vehicle.name }} vehicle" target="_blank" class="booking-btn">Book Now</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
@@ -2536,11 +2777,10 @@ Allow Daily: ${allowDaily === "True" ? "Yes" : "No"}`;
                     <i class="fa-solid fa-location-dot"></i>
                 </div>
                 <div class="contact-text">
-                    Address: Kondotty,Calicut,Kerala<br>
-                   
+                    Address: Kondotty, Calicut, Kerala
                 </div>
             </div>
-    
+        
             <div class="contact-item">
                 <div class="contact-icon">
                     <i class="fa-solid fa-phone"></i>
@@ -2549,7 +2789,7 @@ Allow Daily: ${allowDaily === "True" ? "Yes" : "No"}`;
                     Phone: +91 8078589484
                 </div>
             </div>
-    
+        
             <div class="contact-item">
                 <div class="contact-icon">
                     <i class="fa-solid fa-envelope"></i>
@@ -2558,7 +2798,7 @@ Allow Daily: ${allowDaily === "True" ? "Yes" : "No"}`;
                     Email: <a href="mailto:Pickmecabscalicut@gmail.com">Picmetravels@gmail.com</a>
                 </div>
             </div>
-    
+        
             <div class="contact-item">
                 <div class="contact-icon">
                     <i class="fa-solid fa-globe"></i>
@@ -2568,10 +2808,52 @@ Allow Daily: ${allowDaily === "True" ? "Yes" : "No"}`;
                 </div>
             </div>
         </div>
+        
     </div>
 </section>
 
+<style>
+    .contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 50px;  /* Space between each contact item */
+    background-color: #000;  /* Background color */
+    padding: 30px 20px;
+    text-align: center;
+}
 
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFD700; /* Text color */
+    font-size: 18px;
+}
+
+.contact-icon {
+    background-color: #F9B200; /* Icon background */
+    color: #000;               /* Icon color */
+    width: 50px;
+    height: 50px;
+    border-radius: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;  /* Space between icon and text */
+    font-size: 24px;       /* Icon size */
+}
+
+.contact-text a {
+    color: #F9B200;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-text a:hover {
+    text-decoration: underline;
+}
+
+</style>
 
 <footer class="footer">
     <div class="footer-container">
