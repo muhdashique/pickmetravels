@@ -98,9 +98,16 @@ def edit_vehicle(request, vehicle_id):
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
 
     if request.method == "POST":
-        form = VehicleForm(request.POST, instance=vehicle)
+        form = VehicleForm(request.POST, request.FILES, instance=vehicle)  # Add request.FILES here
         if form.is_valid():
             form.save()
+            
+            # Process new images
+            if request.FILES.getlist('new_images'):
+                for image in request.FILES.getlist('new_images'):
+                    # Assuming you have a VehicleImage model
+                    VehicleImage.objects.create(vehicle=vehicle, image=image)
+            
             messages.success(request, 'Vehicle updated successfully!')
             return redirect('add_vehicle')
 
