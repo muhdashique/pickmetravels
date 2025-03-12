@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.cache import never_cache
 from django.core.mail import send_mail
-
+from django.contrib.auth.decorators import login_required
 from .models import Vehicle, VehicleImage, Package, Testimonial,VehicleImage
 from .forms import VehicleForm, VehicleImageForm, PackageForm, TestimonialForm
 
@@ -40,15 +40,26 @@ def user_login(request):
 
 
 # logout view 
+from django.views.decorators.http import require_POST
 
+@require_POST
 def user_logout(request):
     logout(request)
+    # Clear all session data
+    request.session.flush()
+    response = redirect('/')
+    # Add cache control headers
+    response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
     messages.success(request, 'You have been logged out.')
-    return redirect('/')
+    return response
+
+
 
 
 # vehicle add page views
-
+@login_required(login_url='login')
 def add_vehicle(request):
     if request.method == "POST":
         vehicle_form = VehicleForm(request.POST)
@@ -82,6 +93,7 @@ def add_vehicle(request):
 
 
 # edit vehicle 
+@login_required(login_url='login')
 def edit_vehicle(request, vehicle_id):
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
 
@@ -99,7 +111,7 @@ def edit_vehicle(request, vehicle_id):
 
 
 # delete vehicle
-
+@login_required(login_url='login')
 def delete_vehicle(request, vehicle_id):
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
     vehicle.delete()
@@ -107,7 +119,7 @@ def delete_vehicle(request, vehicle_id):
     return redirect('add_vehicle')
 
 # delete vehicle image
-
+@login_required(login_url='login')
 def delete_vehicle_image(request, image_id):
     image = get_object_or_404(VehicleImage, id=image_id)
     image.delete()
@@ -115,7 +127,7 @@ def delete_vehicle_image(request, image_id):
 
 
 # add tour package
-
+@login_required(login_url='login')
 def add_package(request):
     if request.method == "POST":
         form = PackageForm(request.POST, request.FILES)
@@ -131,7 +143,7 @@ def add_package(request):
 
 
 # edit tour package
-
+@login_required(login_url='login')
 def edit_package(request, package_id):
     package = get_object_or_404(Package, id=package_id)
     if request.method == "POST":
@@ -146,7 +158,7 @@ def edit_package(request, package_id):
 
 
 # delete tour package
-
+@login_required(login_url='login')
 def delete_package(request, package_id):
     package = get_object_or_404(Package, id=package_id)
     package.delete()
@@ -156,7 +168,7 @@ def delete_package(request, package_id):
 
 
 # add testimonial
-
+@login_required(login_url='login')
 def add_testimonial(request):
     testimonials = Testimonial.objects.all()  # Fetch all testimonials to display
     if request.method == "POST":
@@ -171,7 +183,7 @@ def add_testimonial(request):
 
 
 # edit testimonial
-
+@login_required(login_url='login')
 def edit_testimonial(request, testimonial_id):
     testimonial = get_object_or_404(Testimonial, id=testimonial_id)
     if request.method == "POST":
@@ -186,7 +198,7 @@ def edit_testimonial(request, testimonial_id):
 
 
 # delete testimonial
-
+@login_required(login_url='login')
 def delete_testimonial(request, testimonial_id):
     testimonial = get_object_or_404(Testimonial, id=testimonial_id)
     testimonial.delete()

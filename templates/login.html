@@ -190,8 +190,8 @@
             <button type="submit">Login</button>
             
             <div class="form-footer">
-                <p>Don't have an account? <a href="#">Sign up</a></p>
-                <p style="margin-top: 8px;"><a href="#">Forgot password?</a></p>
+           
+                <a href="/" class="btn btn-secondary">Back to Home</a>
             </div>
         </form>
     </div>
@@ -296,6 +296,15 @@
         window.onpopstate = function () {
             history.go(1);
         };
+
+        // Better back button handling
+window.addEventListener('pageshow', function(event) {
+    // If the page is loaded from cache (back button used)
+    if (event.persisted) {
+        // Reload the page to trigger auth check
+        window.location.reload();
+    }
+});
     </script>
     
 </body>
