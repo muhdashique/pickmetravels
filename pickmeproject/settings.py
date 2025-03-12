@@ -90,7 +90,7 @@ DATABASES = {
         'NAME': 'pickmetravels',  # Replace with your database name
         'USER': 'postgres',  # Replace with your database username
         'PASSWORD': 'info@imc',  # Replace with your database password
-          'PASSWORD': '1234', 
+        #   'PASSWORD': '1234', 
         'HOST': 'localhost',  # Use 'localhost' for local development
         'PORT': '5432',  # Default PostgreSQL port
     }

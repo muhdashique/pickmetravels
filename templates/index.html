@@ -2408,7 +2408,7 @@ nav {
 
 
     <section class="mt-24" id="cabs">
-        <h2 class="section-title">Pick Your Local Ride</h2>
+        <h2 class="section-title">Pick Your Ride</h2>
         <!-- <h2 class="text-3xl font-bold text-center mb-8 section-title" style="color: white;">Pick Your Ride</h2> -->
         {% if vehicles %}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] mx-auto">
@@ -2434,7 +2434,7 @@ nav {
     
                 <div class="p-4">
                     <div class="text-xl font-bold">{{ vehicle.name }}</div>
-                    <div class="text-lg font-semibold text-green-500">₹{{ vehicle.per_day_rate }} Local Ride </div>
+                    <div class="text-lg font-semibold text-green-500">₹{{ vehicle.per_day_rate }} Per Day </div>
                     <div class="vehicle-description text-gray-700 overflow-hidden relative" id="desc-{{ vehicle.id }}">
                         {{ vehicle.description|truncatechars:100 }}
                         {% if vehicle.description|length > 90 %}
@@ -2627,7 +2627,7 @@ Allow Daily: ${allowDaily === "True" ? "Yes" : "No"}`;
    
 
 <section style="margin-top: 100px;" id="thariff">
-    <h2 class="section-title">Rental Plan</h2>
+    <h2 class="section-title">Tariff Plan </h2>
     {% if vehicles %}
     <table class="vehicle-table">
         <thead>
