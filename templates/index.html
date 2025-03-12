@@ -2434,7 +2434,7 @@ nav {
     
                 <div class="p-4">
                     <div class="text-xl font-bold">{{ vehicle.name }}</div>
-                    <div class="text-lg font-semibold text-green-500">₹{{ vehicle.per_day_rate }} per day</div>
+                    <div class="text-lg font-semibold text-green-500">₹{{ vehicle.per_day_rate }} Local Ride </div>
                     <div class="vehicle-description text-gray-700 overflow-hidden relative" id="desc-{{ vehicle.id }}">
                         {{ vehicle.description|truncatechars:100 }}
                         {% if vehicle.description|length > 90 %}
